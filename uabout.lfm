@@ -1,0 +1,151 @@
+object frmAbout: TfrmAbout
+  Left = 357
+  Height = 215
+  Top = 215
+  Width = 360
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'About'
+  ClientHeight = 215
+  ClientWidth = 360
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Position = poOwnerFormCenter
+  ShowHint = True
+  LCLVersion = '2.2.6.0'
+  object pnlDrop: TPanel
+    Left = 16
+    Height = 48
+    Top = 16
+    Width = 328
+    Align = alTop
+    BorderSpacing.Around = 16
+    BevelInner = bvLowered
+    Caption = 'ASDAD'
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 48
+    Height = 13
+    Top = 80
+    Width = 124
+    Caption = 'Original idea by Zero3K at'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Cursor = crHandPoint
+    Left = 176
+    Height = 13
+    Hint = 'https://www.donationcoder.com/forum/index.php?topic=53512.msg452082#msg452082'
+    Top = 80
+    Width = 124
+    Caption = 'donationcoder.com/forum'
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentColor = False
+    ParentFont = False
+    OnClick = btnOpenClick
+    OnMouseUp = LabelMouseUp
+  end
+  object Label5: TLabel
+    Left = 48
+    Height = 13
+    Top = 126
+    Width = 124
+    Caption = 'This version by HwapX at '
+    ParentColor = False
+  end
+  object Label6: TLabel
+    Cursor = crHandPoint
+    Left = 176
+    Height = 13
+    Hint = 'https://github.com/hwapx/dcasdad'
+    Top = 126
+    Width = 133
+    Caption = 'github.com/hwapx/dcasdad'
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentColor = False
+    ParentFont = False
+    OnClick = btnOpenClick
+    OnMouseUp = LabelMouseUp
+  end
+  object Label7: TLabel
+    Left = 48
+    Height = 13
+    Top = 102
+    Width = 46
+    Caption = 'Icon from'
+    ParentColor = False
+  end
+  object Label8: TLabel
+    Cursor = crHandPoint
+    Left = 104
+    Height = 13
+    Hint = 'https://www.flaticon.com'
+    Top = 102
+    Width = 58
+    Caption = 'flaticon.com'
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentColor = False
+    ParentFont = False
+    OnClick = btnOpenClick
+    OnMouseUp = LabelMouseUp
+  end
+  object Label9: TLabel
+    Left = 48
+    Height = 13
+    Top = 150
+    Width = 114
+    Caption = 'Developed with Lazarus'
+    ParentColor = False
+  end
+  object Label10: TLabel
+    Cursor = crHandPoint
+    Left = 168
+    Height = 13
+    Hint = 'https://www.lazarus-ide.org/'
+    Top = 150
+    Width = 72
+    Caption = 'lazarus-ide.org'
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentColor = False
+    ParentFont = False
+    OnClick = btnOpenClick
+    OnMouseUp = LabelMouseUp
+  end
+  object pnlDrop1: TPanel
+    Left = 16
+    Height = 24
+    Top = 175
+    Width = 328
+    Align = alBottom
+    BorderSpacing.Around = 16
+    BevelInner = bvLowered
+    Caption = 'Made with ♥ and some code'
+    TabOrder = 1
+  end
+  object pmUrl: TPopupMenu
+    Left = 24
+    Top = 16
+    object btnOpen: TMenuItem
+      Caption = 'Open'
+      Default = True
+      OnClick = btnOpenClick
+    end
+    object btnCopyUrl: TMenuItem
+      Caption = 'Copy URL'
+      OnClick = btnCopyUrlClick
+    end
+  end
+end

@@ -1,0 +1,261 @@
+object frmMain: TfrmMain
+  Left = 975
+  Height = 340
+  Top = 376
+  Width = 480
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'Auto Default Audio Device Switcher'
+  ClientHeight = 320
+  ClientWidth = 480
+  Menu = MainMenu1
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnWindowStateChange = FormWindowStateChange
+  ShowHint = True
+  LCLVersion = '2.2.6.0'
+  object lstDevices: TListView
+    Left = 8
+    Height = 281
+    Top = 31
+    Width = 434
+    Align = alLeft
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderSpacing.Around = 8
+    Checkboxes = True
+    Columns = <    
+      item
+        Caption = 'Devices'
+        Width = 320
+      end    
+      item
+        Caption = 'State'
+        Width = 80
+      end>
+    HideSelection = False
+    PopupMenu = menuDevLst
+    ReadOnly = True
+    RowSelect = True
+    TabOrder = 0
+    ViewStyle = vsReport
+    OnItemChecked = lstDevicesItemChecked
+  end
+  object btnMoveUp: TSpeedButton
+    Left = 448
+    Height = 32
+    Hint = 'Move up'
+    Top = 71
+    Width = 27
+    Anchors = [akTop, akRight]
+    Caption = '5'
+    Font.Name = 'Webdings'
+    OnClick = btnMoveUpClick
+    ParentFont = False
+  end
+  object btnMoveDown: TSpeedButton
+    Left = 448
+    Height = 32
+    Hint = 'Move down'
+    Top = 111
+    Width = 27
+    Anchors = [akTop, akRight]
+    Caption = '6'
+    Font.Name = 'Webdings'
+    OnClick = btnMoveDownClick
+    ParentFont = False
+  end
+  object btnMoveBottom: TSpeedButton
+    Left = 448
+    Height = 32
+    Hint = 'Move to bottom'
+    Top = 151
+    Width = 27
+    Anchors = [akTop, akRight]
+    Caption = 'ê'
+    Font.Name = 'Wingdings'
+    OnClick = btnMoveBottomClick
+    ParentFont = False
+  end
+  object btnForget: TSpeedButton
+    Left = 448
+    Height = 32
+    Hint = 'Forget'
+    Top = 192
+    Width = 27
+    Anchors = [akTop, akRight]
+    Caption = 'r'
+    Font.Name = 'Webdings'
+    OnClick = btnForgetClick
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 8
+    Height = 15
+    Top = 8
+    Width = 464
+    Align = alTop
+    BorderSpacing.Around = 8
+    Caption = 'Device priority list'
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object btnMoveTop: TSpeedButton
+    Left = 448
+    Height = 32
+    Hint = 'Move to top'
+    Top = 31
+    Width = 27
+    Anchors = [akTop, akRight]
+    Caption = 'é'
+    Font.Name = 'Wingdings'
+    OnClick = btnMoveTopClick
+    ParentFont = False
+  end
+  object btnAbout: TSpeedButton
+    Left = 448
+    Height = 32
+    Hint = 'About'
+    Top = 280
+    Width = 27
+    Anchors = [akTop, akRight]
+    Caption = 's'
+    Font.Name = 'Webdings'
+    OnClick = btnAboutClick
+    ParentFont = False
+  end
+  object TrayIcon1: TTrayIcon
+    BalloonFlags = bfInfo
+    PopUpMenu = menuApp
+    Visible = True
+    OnDblClick = btnShowClick
+    Left = 162
+    Top = 243
+  end
+  object menuApp: TPopupMenu
+    Left = 145
+    Top = 160
+    object btnShow: TMenuItem
+      Caption = 'Show'
+      OnClick = btnShowClick
+    end
+    object Separator1: TMenuItem
+      Caption = '-'
+    end
+    object btnExit: TMenuItem
+      Caption = 'Exit'
+      OnClick = btnExitClick
+    end
+  end
+  object menuDevLst: TPopupMenu
+    OnPopup = menuDevLstPopup
+    Left = 280
+    Top = 152
+    object btnMoveTop2: TMenuItem
+      Caption = 'Move to top'
+      OnClick = btnMoveTopClick
+    end
+    object btnMoveUp2: TMenuItem
+      Caption = 'Move up'
+      OnClick = btnMoveUpClick
+    end
+    object btnMoveDown2: TMenuItem
+      Caption = 'Move down'
+      OnClick = btnMoveDownClick
+    end
+    object btnMoveBottom2: TMenuItem
+      Caption = 'Move to bottom'
+      OnClick = btnMoveBottomClick
+    end
+    object Separator3: TMenuItem
+      Caption = '-'
+    end
+    object btnForget2: TMenuItem
+      Caption = 'Forget'
+      OnClick = btnForgetClick
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 248
+    Top = 95
+    object MenuItem1: TMenuItem
+      Caption = 'File'
+      object btnSave: TMenuItem
+        Caption = 'Save Settings'
+        ShortCut = 16467
+        OnClick = btnSaveClick
+      end
+      object Separator4: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem3: TMenuItem
+        AutoCheck = True
+        Caption = 'Start with Windows'
+        Visible = False
+      end
+      object MenuItem6: TMenuItem
+        AutoCheck = True
+        Caption = 'Quiet mode'
+        Visible = False
+      end
+      object Separator2: TMenuItem
+        Caption = '-'
+        Visible = False
+      end
+      object btnExit2: TMenuItem
+        Caption = 'Exit'
+        ShortCut = 32883
+        OnClick = btnExitClick
+      end
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Edit'
+      object MenuItem8: TMenuItem
+        Caption = 'Move to top'
+        ShortCut = 49190
+        OnClick = btnMoveTopClick
+      end
+      object MenuItem9: TMenuItem
+        Caption = 'Move up'
+        ShortCut = 16422
+        OnClick = btnMoveUpClick
+      end
+      object MenuItem10: TMenuItem
+        Caption = 'Move down'
+        ShortCut = 16424
+        OnClick = btnMoveDownClick
+      end
+      object MenuItem11: TMenuItem
+        Caption = 'Move to bottom'
+        ShortCut = 49192
+        OnClick = btnMoveBottomClick
+      end
+      object Separator5: TMenuItem
+        Caption = '-'
+      end
+      object btnForget3: TMenuItem
+        Caption = 'Forget'
+        ShortCut = 46
+        OnClick = btnForgetClick
+      end
+    end
+    object MenuItem4: TMenuItem
+      Caption = 'Help'
+      object btnDonationCoder: TMenuItem
+        Caption = 'Donation Coder'
+        OnClick = btnDonationCoderClick
+      end
+      object btnGithub: TMenuItem
+        Caption = 'Github'
+        OnClick = btnGithubClick
+      end
+      object Separator6: TMenuItem
+        Caption = '-'
+      end
+      object btnAbout2: TMenuItem
+        Caption = 'About'
+        OnClick = btnAboutClick
+      end
+    end
+  end
+end
