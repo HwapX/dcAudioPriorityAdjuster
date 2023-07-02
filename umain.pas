@@ -37,13 +37,12 @@ type
     btnMoveBottom2: TMenuItem;
     menuApp: TPopupMenu;
     menuDevLst: TPopupMenu;
-    MenuItem3: TMenuItem;
+    btnStartWithWindows: TMenuItem;
     MenuItem4: TMenuItem;
     btnAbout2: TMenuItem;
     btnSave: TMenuItem;
     btnExit2: TMenuItem;
     btnForget3: TMenuItem;
-    MenuItem6: TMenuItem;
     btnDonationCoder: TMenuItem;
     MenuItem8: TMenuItem;
     MenuItem9: TMenuItem;
@@ -64,6 +63,7 @@ type
     procedure btnExitClick(Sender: TObject);
     procedure btnMoveDownClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
+    procedure btnStartWithWindowsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormWindowStateChange(Sender: TObject);
@@ -74,14 +74,18 @@ type
     fDeviceListFile: string;
     fDeviceList: TDeviceList;
     fDeviceNotification: TDeviceNotificationClient;
-    fPrevDefault: UnicodeString;
+    fPrevDefault: unicodestring;
+    fStartWithWindowsShortcutPath: string;
 
+    function GetStartWithWindows: boolean;
+    function GetStartWithWindowsShortcutPath: string;
     procedure LoadFileToListView(const FileName: string);
     procedure PopulateAudioDevices;
     procedure SaveListViewToFile(const FileName: string);
     procedure SetDefaultDevice;
     procedure SaveSettings;
     procedure OnDeviceNotification(Sender: TObject; Device: TDevice);
+    procedure SetStartWithWindows(aStart: boolean);
     procedure ShowBallonHint(const aMsg: string; const aFlags: TBalloonFlags);
   public
 
@@ -93,7 +97,7 @@ var
 implementation
 
 uses
-  Windows, ShellApi,
+  Windows, ShellApi, ShlObj, ComObj, ActiveX,
   uabout;
 
 {$R *.lfm}
@@ -102,6 +106,9 @@ uses
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  fStartWithWindowsShortcutPath := GetStartWithWindowsShortcutPath;
+  btnStartWithWindows.Checked := GetStartWithWindows;
+
   TrayIcon1.Icon := Application.Icon;
   TrayIcon1.Hint := Application.Title;
   TrayIcon1.BalloonTitle := Caption;
@@ -184,7 +191,7 @@ end;
 
 procedure TfrmMain.btnGithubClick(Sender: TObject);
 begin
-  ShellExecute(0, 'open', 'https://github.com/HwapX/dcasdad/', '', '', SWP_NOACTIVATE);
+  ShellExecute(0, 'open', 'https://github.com/hwapx/dcAudioPriorityAdjuster', '', '', SWP_NOACTIVATE);
 end;
 
 procedure TfrmMain.btnAboutClick(Sender: TObject);
@@ -251,6 +258,11 @@ end;
 procedure TfrmMain.btnSaveClick(Sender: TObject);
 begin
   SaveSettings;
+end;
+
+procedure TfrmMain.btnStartWithWindowsClick(Sender: TObject);
+begin
+  SetStartWithWindows(btnStartWithWindows.Checked);
 end;
 
 procedure TfrmMain.PopulateAudioDevices;
@@ -390,6 +402,54 @@ begin
   TrayIcon1.BalloonFlags := aFlags;
   TrayIcon1.BalloonHint := aMsg;
   TrayIcon1.ShowBalloonHint;
+end;
+
+function TfrmMain.GetStartWithWindowsShortcutPath: string;
+var
+  StartupPath: string;
+  ItemIDList: PItemIDList;
+begin
+  SetLength(StartupPath, MAX_PATH);
+
+  if (SHGetSpecialFolderLocation(0, CSIDL_STARTUP, ItemIDList) <> S_OK) or not
+    SHGetPathFromIDList(ItemIdList, PChar(StartupPath)) then
+  begin
+    Result := '';
+    Exit;
+  end;
+
+  ILFree(ItemIDList);
+
+  SetLength(StartupPath, StrLen(PChar(StartupPath)));
+
+  Result := StartupPath + '\' + ChangeFileExt(ExtractFileName(Application.ExeName), '.lnk');
+end;
+
+function TfrmMain.GetStartWithWindows: boolean;
+begin
+  Result := FileExists(fStartWithWindowsShortcutPath);
+end;
+
+procedure TfrmMain.SetStartWithWindows(aStart: boolean);
+
+  procedure CreateLink;
+  var
+    ShellLink: IShellLink;
+  begin
+    ShellLink := CreateComObject(CLSID_ShellLink) as IShellLink;
+
+    ShellLink.SetPath(PChar(Application.ExeName));
+    ShellLink.SetArguments('-tray');
+    ShellLink.SetWorkingDirectory(PChar(ExtractFilePath(Application.ExeName)));
+
+    (ShellLink as IPersistFile).Save(pwidechar(WideString(fStartWithWindowsShortcutPath)), False);
+  end;
+
+begin
+  if aStart then
+    CreateLink
+  else
+    DeleteFile(PChar(fStartWithWindowsShortcutPath));
 end;
 
 end.

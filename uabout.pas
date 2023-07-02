@@ -15,6 +15,8 @@ type
   TfrmAbout = class(TForm)
     Label1: TLabel;
     Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
     Label2: TLabel;
     Label5: TLabel;
     Label6: TLabel;

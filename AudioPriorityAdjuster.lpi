@@ -11,8 +11,7 @@
       <UseXPManifest Value="True"/>
       <XPManifest>
         <DpiAware Value="True"/>
-        <ExecutionLevel Value="requireAdministrator"/>
-        <TextName Value="HwapX.DonationCoderApps.AutoDefaultDeviceSwitcher"/>
+        <TextName Value="HwapX.DonationCoderApps.AudioDevicePriorityAdjuster"/>
         <TextDesc Value="Switch default audio device by priority list"/>
       </XPManifest>
       <Icon Value="0"/>
@@ -39,7 +38,7 @@
     </RequiredPackages>
     <Units>
       <Unit>
-        <Filename Value="AutoDefaultAudioDeviceSwitcher.lpr"/>
+        <Filename Value="AudioPriorityAdjuster.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
@@ -67,7 +66,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="AutoDefaultAudioDeviceSwitcher"/>
+      <Filename Value="AudioPriorityAdjuster"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
