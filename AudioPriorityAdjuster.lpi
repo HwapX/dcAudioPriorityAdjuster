@@ -5,13 +5,13 @@
     <PathDelim Value="\"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
-      <Title Value="Auto Default Device Switcher"/>
+      <Title Value="Audio Priority Adjuster"/>
       <Scaled Value="True"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <XPManifest>
         <DpiAware Value="True"/>
-        <TextName Value="HwapX.DonationCoderApps.AudioDevicePriorityAdjuster"/>
+        <TextName Value="HwapX.DonationCoderApps.AudioPriorityAdjuster"/>
         <TextDesc Value="Switch default audio device by priority list"/>
       </XPManifest>
       <Icon Value="0"/>
@@ -19,7 +19,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MajorVersionNr Value="1"/>
-      <RevisionNr Value="1"/>
+      <RevisionNr Value="3"/>
       <StringTable CompanyName="HwapX"/>
     </VersionInfo>
     <BuildModes>
