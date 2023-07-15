@@ -422,7 +422,7 @@ begin
 
   SetLength(StartupPath, StrLen(PChar(StartupPath)));
 
-  Result := StartupPath + '\' + ChangeFileExt(ExtractFileName(Application.ExeName), '.lnk');
+  Result := StartupPath + '\' + Application.Title + '.lnk';// + ChangeFileExt(ExtractFileName(Application.ExeName), '.lnk');
 end;
 
 function TfrmMain.GetStartWithWindows: boolean;
@@ -439,7 +439,7 @@ procedure TfrmMain.SetStartWithWindows(aStart: boolean);
     ShellLink := CreateComObject(CLSID_ShellLink) as IShellLink;
 
     ShellLink.SetPath(PChar(Application.ExeName));
-    ShellLink.SetArguments('-tray');
+    ShellLink.SetArguments('-hidden');
     ShellLink.SetWorkingDirectory(PChar(ExtractFilePath(Application.ExeName)));
 
     (ShellLink as IPersistFile).Save(pwidechar(WideString(fStartWithWindowsShortcutPath)), False);
